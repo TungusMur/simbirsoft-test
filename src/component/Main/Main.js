@@ -1,15 +1,25 @@
 import { Routes, Route } from 'react-router-dom';
-import Competition from '../Competition/Competition';
-import CompetitionCalendar from '../CompetitionCalendar';
-import CompetionData from '../CompetionData';
+import Competitions from '../Competitions';
+import Competition from '../Competition';
+import Matches from '../Matches';
+import MatchesWithFilter from '../MatchesWithFilter';
+// import CompetitionCalendar from '../CompetitionCalendar';
+// import CompetionData from '../CompetionData';
 
 const Main = () => (
   <div className="main">
     <Routes>
-      <Route exact path={'/'} element={<Competition />} />
-      <Route path={'/competitionCalendar'} element={<CompetitionCalendar />}>
-        <Route path={'dateFrom=:date&dateTo=:date'} element={<CompetionData />} />
-        <Route path="*" element={<h1>ZXVZXVZXV</h1>} />
+      <Route exact path={'/competitions'} element={<Competitions />} />
+
+      <Route path={'/competitions/id=:id'} element={<Competition />}>
+        <Route index element={<Matches />} />
+        <Route path={'dateFrom=:date&dateTo=:date'} element={<MatchesWithFilter />} />
+      </Route>
+
+      <Route exact path={'/teams'} element={<Competitions />} />
+      <Route path={'/teams/id=:id'} element={<Competition />}>
+        <Route index element={<Matches />} />
+        <Route path={'dateFrom=:date&dateTo=:date'} element={<MatchesWithFilter />} />
       </Route>
     </Routes>
   </div>

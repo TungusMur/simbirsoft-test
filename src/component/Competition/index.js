@@ -1,3 +1,3 @@
-import Data from './Competition';
+import Competition from './Competition';
 
-export default Data;
+export default Competition;

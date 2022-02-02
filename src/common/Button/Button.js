@@ -13,8 +13,7 @@ const Button = ({ type, state, setState, data }) => {
     '>': (
       <button
         className={
-          data.length !== 0 &&
-          ((data.count % 20 === 0 && data.count / 20 === state) || (data.count % 20 !== 0 && data.count / 20 < state))
+          JSON.stringify(data) !== '{}' && (Math.ceil(data.count / 20) === state || data.count === 0)
             ? 'notActive'
             : 'active'
         }

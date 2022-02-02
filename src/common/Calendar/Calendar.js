@@ -1,15 +1,16 @@
-import { useState } from 'react';
+/* eslint-disable no-unused-vars */
+import { useEffect, useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 
 const Calendar = ({ oldDateFrom, oldDateTo }) => {
-  const [dateFrom, setDateFrom] = useState(
-    oldDateFrom ? oldDateFrom[0] : new Date().toJSON().slice(0, 10).replace(/-/g, '-')
-  );
-  const [dateTo, setDateTo] = useState(
-    oldDateTo ? oldDateFrom[1] : new Date().toJSON().slice(0, 10).replace(/-/g, '-')
-  );
+  const [dateFrom, setDateFrom] = useState(oldDateFrom ? oldDateFrom[0] : '');
+  const [dateTo, setDateTo] = useState(oldDateTo ? oldDateFrom[1] : '');
 
   const navigation = useNavigate();
+
+  useEffect(() => {
+    console.log(dateFrom);
+  }, [dateFrom]);
 
   return (
     <div className="calendar">
@@ -41,7 +42,7 @@ const Calendar = ({ oldDateFrom, oldDateTo }) => {
       >
         Найти
       </button>
-      <NavLink to={`dateFrom=${dateFrom}&dateTo=${dateTo}`}>Найти</NavLink>
+      {/* <NavLink to={`dateFrom=${dateFrom}&dateTo=${dateTo}`}>Найти</NavLink> */}
     </div>
   );
 };

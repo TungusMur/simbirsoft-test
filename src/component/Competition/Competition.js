@@ -1,30 +1,17 @@
-import { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { getCompetition } from '../../Store/reducers/reducerApi';
-import Button from '../../common/Button/Button';
-import CompetitionList from '../../common/CompetitionList';
+import { Outlet } from 'react-router';
+import Calendar from '../../common/Calendar';
 
 // eslint-disable-next-line no-shadow
-const Competition = ({ data, getCompetition }) => {
-  const [state, setState] = useState(1);
-
-  useEffect(() => {
-    getCompetition();
-  }, []);
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
+const Competition = () => {
   return (
     <div className="competition">
-      <Button type={'<'} state={state} setState={setState} data={data} />
-      <Button type={'>'} state={state} setState={setState} data={data} />
-      <CompetitionList dataCheck={data} dataList={data.competitions} state={state} name="name" />
-      <Button type={'<'} state={state} setState={setState} data={data} />
-      <Button type={'>'} state={state} setState={setState} data={data} />
+      <Calendar
+        oldDateFrom={document.location.href.match(/\d+-\d+-\d+/g) || false}
+        oldDateTo={document.location.href.match(/\d+-\d+-\d+/g) || false}
+      />
+      <Outlet />
     </div>
   );
 };
 
-export default connect((data) => ({ data: data.reducerApi.data }), { getCompetition })(Competition);
+export default Competition;
