@@ -29,8 +29,6 @@ const MatchesWithFilter = ({ data, getMatchesWithFilter }) => {
   return (
     <div className="matchesWithFilter">
       <h1>{document.location.href.match(/\d+/g)[1]}</h1>
-      <h1>{document.location.href.match(/dateFrom=\d+-\d+-\d+&dateTo=\d+-\d+-\d+/g)[0].match(/\d+-\d+-\d+/g)[0]}</h1>
-      <h1>{document.location.href.match(/dateFrom=\d+-\d+-\d+&dateTo=\d+-\d+-\d+/g)[0].match(/\d+-\d+-\d+/g)[1]}</h1>
 
       <Button type={'<'} state={state} setState={setState} data={data} />
       <Button type={'>'} state={state} setState={setState} data={data} />

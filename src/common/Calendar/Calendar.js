@@ -8,10 +8,6 @@ const Calendar = ({ oldDateFrom, oldDateTo }) => {
 
   const navigation = useNavigate();
 
-  useEffect(() => {
-    console.log(dateFrom);
-  }, [dateFrom]);
-
   return (
     <div className="calendar">
       <div className="dateFrom">

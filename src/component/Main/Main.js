@@ -1,28 +1,47 @@
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getCompetitions, getTeams } from '../../Store/reducers/reducerApi';
 import Competitions from '../Competitions';
 import Competition from '../Competition';
+import Teams from '../Teams';
+import Team from '../Team';
 import Matches from '../Matches';
-import MatchesWithFilter from '../MatchesWithFilter';
-// import CompetitionCalendar from '../CompetitionCalendar';
-// import CompetionData from '../CompetionData';
+import Search from '../Search';
 
-const Main = () => (
-  <div className="main">
-    <Routes>
-      <Route exact path={'/competitions'} element={<Competitions />} />
+// eslint-disable-next-line no-shadow
+const Main = ({ getCompetitions, getTeams }) => {
+  useEffect(() => {
+    getCompetitions();
+    getTeams();
+  }, []);
 
-      <Route path={'/competitions/id=:id'} element={<Competition />}>
-        <Route index element={<Matches />} />
-        <Route path={'dateFrom=:date&dateTo=:date'} element={<MatchesWithFilter />} />
-      </Route>
+  return (
+    <div className="main">
+      <Routes>
+        <Route exact path={'/competitions'} element={<Competitions />}>
+          <Route index element={<Search type={'competitions'} />} />
+          <Route exact path={'search=:search'} element={<Search type={'competitions'} />} />
+          <Route path={'*'} element={<h1>403</h1>} />
+        </Route>
 
-      <Route exact path={'/teams'} element={<Competitions />} />
-      <Route path={'/teams/id=:id'} element={<Competition />}>
-        <Route index element={<Matches />} />
-        <Route path={'dateFrom=:date&dateTo=:date'} element={<MatchesWithFilter />} />
-      </Route>
-    </Routes>
-  </div>
-);
+        <Route path={'/competitions/id=:id'} element={<Competition />}>
+          <Route index element={<Matches type="competitions" />} />
+          <Route path={'dateFrom=:date&dateTo=:date'} element={<Matches type="competitions" filter={true} />} />
+        </Route>
 
-export default Main;
+        <Route exact path={'/teams'} element={<Teams />}>
+          <Route index element={<Search type={'teams'} />} />
+          <Route exact path={'search=:search'} element={<Search type={'teams'} />} />
+          <Route path={'*'} element={<h1>403</h1>} />
+        </Route>
+        <Route path={'/teams/id=:id'} element={<Team />}>
+          <Route index element={<Matches type="teams" />} />
+          <Route path={'dateFrom=:date&dateTo=:date'} element={<Matches type="teams" filter={true} />} />
+        </Route>
+      </Routes>
+    </div>
+  );
+};
+
+export default connect(null, { getCompetitions, getTeams })(Main);

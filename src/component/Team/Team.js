@@ -5,11 +5,11 @@ import Calendar from '../../common/Calendar';
 import { getDataId } from '../../Store/reducers/reducerApi';
 
 // eslint-disable-next-line no-shadow
-const Competition = ({ dataId, getDataId }) => {
+const Team = ({ dataId, getDataId }) => {
   const params = useParams();
 
   useEffect(() => {
-    getDataId('competitions', params.id);
+    getDataId('teams', params.id);
   }, []);
 
   return (
@@ -19,20 +19,13 @@ const Competition = ({ dataId, getDataId }) => {
         oldDateTo={document.location.href.match(/\d+-\d+-\d+/g) || false}
       />
       {JSON.stringify(dataId) !== '{}' ? (
-        <div className="competitionInfo">
-          <div className="competitionName">
-            <h1>{dataId.name}</h1>
-          </div>
-          <div className="competitionArea">
-            <h1>{dataId.area.name}</h1>
-          </div>
+        <div className="nameTeam">
+          <h1>{dataId.name}</h1>
         </div>
-      ) : (
-        <h2>Загрузка...</h2>
-      )}
+      ) : null}
       <Outlet />
     </div>
   );
 };
 
-export default connect((data) => ({ dataId: data.reducerApi.matches.dataId }), { getDataId })(Competition);
+export default connect((data) => ({ dataId: data.reducerApi.matches.dataId }), { getDataId })(Team);

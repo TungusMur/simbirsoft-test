@@ -1,21 +1,36 @@
-// eslint-disable-next-line no-unused-vars
-import { NavLink } from 'react-router-dom';
+import DataListItem from '../DataListItem/DataListItem';
 
-// eslint-disable-next-line no-unused-vars
-const DataList = ({ dataCheck, dataList, state, name }) => (
-  <div className="competitionList">
-    <ul>
-      {JSON.stringify(dataCheck) !== '{}'
-        ? dataList
-            .filter((item, index) => state * 20 > index + 1 && state * 20 - 20 < index + 1)
-            .map((item, index) => (
-              <li key={index}>
-                <h3>{item.name}</h3>
-              </li>
-            ))
-        : null}
-    </ul>
-  </div>
-);
+const DataList = ({ type, dataCheck, dataList, state, regex }) => {
+  switch (type) {
+    case 'competitions':
+    case 'teams':
+      return (
+        <div className="dataList">
+          <ul>
+            {JSON.stringify(dataCheck) !== '{}'
+              ? dataList
+                  .filter((item, index) => state * 20 > index + 1 && state * 20 - 20 < index + 1)
+                  .map((item, index) => <DataListItem key={index} index={index} type={type} item={item} />)
+              : null}
+          </ul>
+        </div>
+      );
+    case 'search':
+      return (
+        <div className="dataList">
+          <ul>
+            {JSON.stringify(dataCheck) !== '{}'
+              ? dataList
+                  .filter((item) => regex.test(item.name.toLowerCase()))
+                  .filter((item, index) => state * 20 > index + 1 && state * 20 - 20 < index + 1)
+                  .map((item, index) => <DataListItem key={index} index={index} type={type} item={item} />)
+              : null}
+          </ul>
+        </div>
+      );
+    default:
+      return null;
+  }
+};
 
 export default DataList;

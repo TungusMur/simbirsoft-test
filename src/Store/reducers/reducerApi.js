@@ -1,66 +1,119 @@
+/* eslint-disable no-unused-vars */
 import axios from 'axios';
 
-const GET_DATA = 'GET_DATA';
+const GET_COMPETITIONS = 'GET_COMPETITIONS';
+const GET_TEAMS = 'GET_TEAMS';
 const GET_MATCHES = 'GET_MATCHES';
-const GET_MATCHES_WITH_FILTER = 'GET_MATCHES_WITH_FILTER';
+const GET_DATA_ID = 'GET_DATA_ID';
+// const GET_MATCHES_WITH_FILTER = 'GET_MATCHES_WITH_FILTER';
 
 const defaultState = {
-  data: {},
+  data: { competitions: {}, teams: {} },
+  matches: {
+    dataMatches: {},
+    dataId: {},
+  },
+  status: 0,
 };
 
 // eslint-disable-next-line default-param-last
 export default (state = defaultState, { type, payload }) => {
   switch (type) {
-    case GET_DATA:
-      return { ...state, data: { ...payload } };
+    case GET_COMPETITIONS:
+      return { ...state, data: { ...state.data, competitions: { ...payload.data } }, status: payload.status };
+
+    case GET_TEAMS:
+      return { ...state, data: { ...state.data, teams: { ...payload.data } }, status: payload.status };
+
     case GET_MATCHES:
-      return { ...state, data: { ...payload } };
-    case GET_MATCHES_WITH_FILTER:
-      return { ...state, data: { ...payload } };
+      return {
+        ...state,
+        matches: { ...state.matches, dataMatches: { ...payload.data } },
+        status: payload.status,
+      };
+
+    case GET_DATA_ID:
+      return {
+        ...state,
+        matches: { ...state.matches, dataId: { ...payload.dataId } },
+      };
+
     default:
       return { ...state };
   }
 };
 export const getCompetitions = () => (dispatch) => {
+  dispatch({ type: GET_COMPETITIONS, payload: { data: {}, status: 0 } });
+
   axios
     .get('https://api.football-data.org/v2/competitions/', {
       headers: {
         'X-Auth-Token': '1c9fa86f293c45cf8d5cdfda1d7d3d8b',
       },
     })
-    .then((data) => dispatch({ type: GET_DATA, payload: data.data }));
+    .then((data) => dispatch({ type: GET_COMPETITIONS, payload: { data: data.data, status: 200 } }));
 };
 
-// eslint-disable-next-line no-unused-vars
-export const getCompetitionCalendar = (dateFrom, dateTo) => (dispatch) => {
-  dispatch({ type: GET_DATA, payload: {} });
+export const getTeams = () => (dispatch) => {
+  dispatch({ type: GET_TEAMS, payload: { data: {}, status: 0 } });
+
   axios
-    .get(`https://api.football-data.org/v2/matches?dateFrom=${dateFrom}&dateTo=${dateTo}`, {
+    .get(`https://api.football-data.org/v2/teams`, {
       headers: {
         'X-Auth-Token': '1c9fa86f293c45cf8d5cdfda1d7d3d8b',
       },
     })
-    .then((data) => dispatch({ type: GET_DATA, payload: data.data }));
+    .then((data) => dispatch({ type: GET_TEAMS, payload: { data: data.data, status: 200 } }));
 };
 
-export const getMatches = (typeMatches, id) => (dispatch) => {
-  dispatch({ type: GET_MATCHES, payload: {} });
+export const getDataId = (typematches, id) => (dispatch) => {
   axios
-    .get(`https://api.football-data.org/v2/${typeMatches}/${id}/matches`, {
+    .get(`https://api.football-data.org/v2/${typematches}`, {
       headers: {
         'X-Auth-Token': '1c9fa86f293c45cf8d5cdfda1d7d3d8b',
       },
     })
-    .then((data) => dispatch({ type: GET_MATCHES, payload: data.data }));
+    .then((dataId) =>
+      dispatch({
+        type: GET_DATA_ID,
+        payload: { dataId: dataId.data[typematches].filter((item) => item.id === Number(id))[0] },
+        status: 200,
+      })
+    );
 };
 
-export const getMatchesWithFilter = (typeMatches, id, dateFrom, dateTo) => (dispatch) => {
-  dispatch({ type: GET_MATCHES_WITH_FILTER, payload: {} });
-  axios
-    .get(`https://api.football-data.org/v2/${typeMatches}/${id}/matches?dateFrom=${dateFrom}&dateTo=${dateTo}`, {
-      headers: {
-        'X-Auth-Token': '1c9fa86f293c45cf8d5cdfda1d7d3d8b',
-      },
-    })
-    .then((data) => dispatch({ type: GET_MATCHES_WITH_FILTER, payload: data.data }));
-};
+export const getMatches =
+  (typematches, id, filter, dateFrom = 0, dateTo = 0) =>
+  (dispatch) => {
+    dispatch({ type: GET_MATCHES, payload: { data: {}, status: 0 } });
+
+    axios
+      .get(
+        `https://api.football-data.org/v2/${typematches}/${id}/matches${
+          filter ? `?dateFrom=${dateFrom}&dateTo=${dateTo}` : ''
+        }`,
+        {
+          headers: {
+            'X-Auth-Token': '1c9fa86f293c45cf8d5cdfda1d7d3d8b',
+          },
+        }
+      )
+      .then((data) =>
+        dispatch({
+          type: GET_MATCHES,
+          payload: {
+            data: data.data,
+            status: 200,
+          },
+        })
+      )
+      .catch(() =>
+        dispatch({
+          type: GET_MATCHES,
+          payload: {
+            data: {},
+            status: 403,
+          },
+        })
+      );
+  };
