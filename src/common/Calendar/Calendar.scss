@@ -1,0 +1,17 @@
+.calendar {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.calendarButton {
+  display: flex;
+  align-items: center;
+}
+
+.date {
+  margin-bottom: 15px;
+  h2 {
+    margin: 10px 0px;
+  }
+}

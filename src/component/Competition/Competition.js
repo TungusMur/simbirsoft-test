@@ -1,38 +1,59 @@
+/* eslint-disable no-unused-vars */
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Outlet, useParams } from 'react-router';
-import Calendar from '../../common/Calendar';
-import { getDataId } from '../../Store/reducers/reducerApi';
+import { Outlet, useParams, useNavigate } from 'react-router';
+import Calendar from 'common/Calendar';
+import { getDataId, deleteMatches } from 'Store/reducers/reducerMathes';
+import Button from 'common/Button';
+import './Competition.scss';
 
 // eslint-disable-next-line no-shadow
-const Competition = ({ dataId, getDataId }) => {
+const Competition = ({ dataId, statusId, getDataId, deleteMatches }) => {
   const params = useParams();
+  const navigation = useNavigate();
 
   useEffect(() => {
     getDataId('competitions', params.id);
+    return () => {
+      deleteMatches();
+    };
   }, []);
 
   return (
     <div className="competition">
-      <Calendar
-        oldDateFrom={document.location.href.match(/\d+-\d+-\d+/g) || false}
-        oldDateTo={document.location.href.match(/\d+-\d+-\d+/g) || false}
-      />
-      {JSON.stringify(dataId) !== '{}' ? (
+      <div className="competitionData">
         <div className="competitionInfo">
-          <div className="competitionName">
-            <h1>{dataId.name}</h1>
-          </div>
-          <div className="competitionArea">
-            <h1>{dataId.area.name}</h1>
+          {statusId === 200 ? (
+            <div className="competitionInfoForm">
+              {dataId.crestUrl ? (
+                <div className="emblemUrl">
+                  <img alt="emblemUrl" src={dataId.emblemUrl} />
+                </div>
+              ) : null}
+              <div className="competitionText">
+                <div className="competitionName">
+                  <h5>{dataId.name}</h5>
+                </div>
+                <div className="competitionArea">
+                  <h5>{dataId.area.name}</h5>
+                </div>
+              </div>
+            </div>
+          ) : null}
+        </div>
+        <div className="competitionForm">
+          <div className="competitionFormAction">
+            <Calendar />
           </div>
         </div>
-      ) : (
-        <h2>Загрузка...</h2>
-      )}
+        <Button type="reset" navigation={navigation} />
+      </div>
       <Outlet />
     </div>
   );
 };
 
-export default connect((data) => ({ dataId: data.reducerApi.matches.dataId }), { getDataId })(Competition);
+export default connect((data) => ({ dataId: data.reducerMathes.dataId, statusId: data.reducerMathes.statusId }), {
+  getDataId,
+  deleteMatches,
+})(Competition);

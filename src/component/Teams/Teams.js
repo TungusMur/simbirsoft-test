@@ -1,15 +1,36 @@
 import { useState } from 'react';
-import { useNavigate, Outlet } from 'react-router';
+import { useNavigate, Outlet, useParams } from 'react-router';
 import Button from '../../common/Button';
+import '../../styles/searchForm.scss';
+import './Teams.scss';
 
 const Team = () => {
-  const [value, setValue] = useState('');
+  const params = useParams();
+  const [value, setValue] = useState(JSON.stringify(params) !== '{}' ? params.search : '');
   const navigation = useNavigate();
   return (
     <div className="teams">
-      <div className="searchForm">
-        <input type="text" placeholder="Поиск..." value={value} onChange={(e) => setValue(e.target.value)} />
-        <Button type="teams" value={value} navigation={navigation} setValue={setValue} />
+      <div className="search">
+        <div className="searchForm">
+          <div className="searchFormActions">
+            <input
+              type="text"
+              placeholder="Поиск..."
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              onKeyPress={(e) => {
+                if (value.replace(/\s+/g, '') && e.code === 'Enter') {
+                  navigation(`/teams/search=${value}`);
+                } else if (e.code === 'Enter') {
+                  navigation(`/teams`);
+                  setValue('');
+                }
+              }}
+            />
+            <Button type="teams" value={value} navigation={navigation} setValue={setValue} />
+          </div>
+        </div>
+        <Button type="reset" navigation={navigation} />
       </div>
       <Outlet />
     </div>

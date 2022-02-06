@@ -1,3 +1,4 @@
 import reducerApi from './reducerApi';
+import reducerMathes from './reducerMathes';
 
-export default { reducerApi };
+export default { reducerApi, reducerMathes };

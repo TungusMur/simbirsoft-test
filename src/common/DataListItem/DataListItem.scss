@@ -1,0 +1,117 @@
+.dataListItem {
+  position: relative;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgb(69 90 157 / 12%);
+  margin-bottom: 24px;
+  padding: 20px 32px;
+  &:hover {
+    box-shadow: 0 16px 40px rgba(69 90 157 / 30%);
+  }
+  // &:hover .imgFirst {
+  //   transform: rotateY(360deg);
+  // }
+  // &:hover .imgSecond {
+  //   transform: rotateY(180deg);
+  // }
+}
+
+.dataListInfo {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.dataListItemText {
+  display: flex;
+  flex-direction: column;
+}
+
+.dataListItemName {
+  margin: 7px 0px;
+}
+
+.dataListItemDetails {
+  display: flex;
+  margin: 7px 0px;
+}
+
+.dataListItemCurrentSeason {
+  display: flex;
+  margin-right: 5px;
+}
+
+.dataListItemArea {
+  margin-left: 5px;
+}
+
+.dataListItemEmblem {
+  // height: 100px;
+  // width: 200px;
+  // perspective: 1000px;
+  // position: relative;
+  display: flex;
+  justify-content: center;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  img {
+    background: #ffffff;
+    margin-right: 32px;
+    // position: absolute;
+    height: 85px;
+    backface-visibility: hidden;
+  }
+}
+
+.imgFirst {
+  // transform: rotateY(180deg);
+  // transition: 1s;
+}
+
+.imgSecond {
+  // transition: 1s;
+}
+
+.dataListHover {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.competitionName {
+  margin-bottom: 15px;
+}
+
+.teamsBattle {
+  display: flex;
+  align-items: center;
+  /* width: 32%; */
+  /* justify-content: space-between; */
+  margin-bottom: 15px;
+}
+
+.awayTeam {
+  margin-right: 20px;
+
+  h4 {
+    margin-bottom: 7px;
+  }
+}
+
+.homeTeam {
+  margin-left: 20px;
+
+  h4 {
+    margin-bottom: 7px;
+  }
+}
+
+.timeAndAreaEvent {
+  display: flex;
+}
+
+.time {
+  margin-right: 20px;
+}

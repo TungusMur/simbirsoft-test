@@ -2,12 +2,13 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import { connect } from 'react-redux';
-import { getMatches } from '../../Store/reducers/reducerApi';
-import DataList from '../../common/DataList';
-import Button from '../../common/Button';
+import { getMatches } from 'Store/reducers/reducerMathes';
+import DataList from 'common/DataList';
+import Button from 'common/Button';
+import './Matches.scss';
 
 // eslint-disable-next-line no-shadow
-const Matches = ({ type, filter = false, data, status, getMatches }) => {
+const Matches = ({ type, filter = false, data, statusMatches, getMatches }) => {
   const location = useLocation();
   const [state, setState] = useState(1);
 
@@ -25,36 +26,32 @@ const Matches = ({ type, filter = false, data, status, getMatches }) => {
           .match(/\d\d\d\d-\d\d-\d\d/g)[1]
       );
     } else {
-      getMatches(type, document.location.href.match(/\d+/g)[1], false);
+      getMatches(type, document.location.href.match(/\d+/g)[1]);
     }
     setState(1);
   }, [location]);
 
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
+  // useEffect(() => {
+  //   return deleteMatches();
+  // }, []);
 
-  useEffect(() => {
-    console.log(data);
-    console.log(status);
-  }, [data]);
-  return status === 200 ? (
+  return statusMatches === 200 ? (
     <div className="matches">
-      <Button type={'<'} state={state} setState={setState} data={data} />
-      <Button type={'>'} state={state} setState={setState} data={data} />
+      {/* <Button type={'<'} state={state} setState={setState} data={data} />
+      <Button type={'>'} state={state} setState={setState} data={data} /> */}
 
       <DataList type={type} dataCheck={data} dataList={data.matches} state={state} />
 
-      <Button type={'<'} state={state} setState={setState} data={data} />
-      <Button type={'>'} state={state} setState={setState} data={data} />
+      {/* <Button type={'<'} state={state} setState={setState} data={data} />
+      <Button type={'>'} state={state} setState={setState} data={data} /> */}
     </div>
   ) : null;
 };
 
 export default connect(
   (data) => ({
-    data: data.reducerApi.matches.dataMatches,
-    status: data.reducerApi.status,
+    data: data.reducerMathes.dataMatches,
+    statusMatches: data.reducerMathes.statusMatches,
   }),
   {
     getMatches,

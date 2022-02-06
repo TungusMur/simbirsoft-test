@@ -1,16 +1,36 @@
 import { useState } from 'react';
-import { useNavigate, Outlet } from 'react-router';
+import { useNavigate, Outlet, useParams } from 'react-router';
 import Button from '../../common/Button';
+import './Competitions.scss';
 
 // eslint-disable-next-line no-shadow
 const Competitions = () => {
-  const [value, setValue] = useState('');
+  const params = useParams();
+  const [value, setValue] = useState(JSON.stringify(params) !== '{}' ? params.search : '');
   const navigation = useNavigate();
   return (
     <div className="competitions">
-      <div className="searchForm">
-        <input type="text" placeholder="Поиск..." value={value} onChange={(e) => setValue(e.target.value)} />
-        <Button type="competitions" value={value} navigation={navigation} setValue={setValue} />
+      <div className="search">
+        <div className="searchForm">
+          <div className="searchFormActions">
+            <input
+              type="text"
+              placeholder="Поиск..."
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              onKeyPress={(e) => {
+                if (value.replace(/\s+/g, '') && e.code === 'Enter') {
+                  navigation(`/competitions/search=${value}`);
+                } else if (e.code === 'Enter') {
+                  navigation(`/competitions`);
+                  setValue('');
+                }
+              }}
+            />
+            <Button type="competitions" value={value} navigation={navigation} setValue={setValue} />
+          </div>
+        </div>
+        <Button type="reset" navigation={navigation} />
       </div>
       <Outlet />
     </div>

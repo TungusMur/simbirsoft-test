@@ -1,5 +1,6 @@
+import './Button.scss';
+
 const Button = ({ type, state, setState, data = {}, difference = 0, value, navigation, setValue }) => {
-  console.log(data);
   switch (type) {
     case '<':
       return JSON.stringify(data) !== '{}' && data.count - difference > 20 ? (
@@ -36,10 +37,11 @@ const Button = ({ type, state, setState, data = {}, difference = 0, value, navig
     case 'teams':
       return (
         <button
-          className="searchButton"
+          className="searchFormButton"
           onClick={() => {
             if (value.replace(/\s+/g, '')) {
               navigation(`/${type}/search=${value}`);
+              window.scrollTo(0, 0);
             } else {
               navigation(`/${type}`);
               setValue('');
@@ -47,6 +49,19 @@ const Button = ({ type, state, setState, data = {}, difference = 0, value, navig
           }}
         >
           Найти
+        </button>
+      );
+    case 'reset':
+      return (
+        <button
+          className="resetSearch"
+          onClick={() => {
+            if (document.location.href.match(/\d+-\d+-\d+/g)) {
+              navigation(`/${document.location.pathname.match(/\w+\/id=\d+/)[0]}`);
+            }
+          }}
+        >
+          Сбросить
         </button>
       );
     default:

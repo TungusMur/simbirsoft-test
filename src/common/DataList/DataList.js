@@ -1,4 +1,9 @@
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-unused-vars
+import { useEffect, useRef } from 'react';
 import DataListItem from '../DataListItem/DataListItem';
+import './DataList.scss';
+import '../DataListItem/DataListItem.scss';
 
 const DataList = ({ type, dataCheck, dataList, state, regex }) => {
   switch (type) {
@@ -9,7 +14,7 @@ const DataList = ({ type, dataCheck, dataList, state, regex }) => {
           <ul>
             {JSON.stringify(dataCheck) !== '{}'
               ? dataList
-                  .filter((item, index) => state * 20 > index + 1 && state * 20 - 20 < index + 1)
+                  // .filter((item, index) => state * 20 > index + 1 && state * 20 - 20 < index + 1)
                   .map((item, index) => <DataListItem key={index} index={index} type={type} item={item} />)
               : null}
           </ul>
@@ -22,7 +27,7 @@ const DataList = ({ type, dataCheck, dataList, state, regex }) => {
             {JSON.stringify(dataCheck) !== '{}'
               ? dataList
                   .filter((item) => regex.test(item.name.toLowerCase()))
-                  .filter((item, index) => state * 20 > index + 1 && state * 20 - 20 < index + 1)
+                  // .filter((item, index) => state * 20 > index + 1 && state * 20 - 20 < index + 1)
                   .map((item, index) => <DataListItem key={index} index={index} type={type} item={item} />)
               : null}
           </ul>
