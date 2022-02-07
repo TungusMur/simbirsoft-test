@@ -104,6 +104,12 @@ a {
 button {
   color: #364f6b;
   font-size: 30px;
+  background: none;
+  border: 0;
+  width: auto;
+  &:hover {
+    color: #6382a5;
+  }
 
   @media screen and (max-width: 1023px) {
     font-size: 19px;
@@ -111,13 +117,6 @@ button {
 
   @media screen and (max-width: 1023px) {
     font-size: 14px;
-  }
-
-  background: none;
-  border: 0;
-  width: auto;
-  &:hover {
-    color: #6382a5;
   }
 }
 

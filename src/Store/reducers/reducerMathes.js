@@ -54,7 +54,7 @@ export const getDataId = (typematches, id) => (dispatch) => {
   axios
     .get(`https://api.football-data.org/v2/${typematches}`, {
       headers: {
-        'X-Auth-Token': '1c9fa86f293c45cf8d5cdfda1d7d3d8b',
+        'X-Auth-Token': process.env.REACT_APP_AUTH_TOKEN,
       },
     })
     .then((dataId) =>
@@ -83,7 +83,7 @@ export const getMatches =
         }`,
         {
           headers: {
-            'X-Auth-Token': '1c9fa86f293c45cf8d5cdfda1d7d3d8b',
+            'X-Auth-Token': process.env.REACT_APP_AUTH_TOKEN,
           },
         }
       )

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useCallback, useEffect, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import './Header.scss';
@@ -21,7 +20,6 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    console.log(click);
     if (click) {
       document.body.style.overflow = 'hidden';
     } else {

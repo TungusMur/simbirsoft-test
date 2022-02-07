@@ -31,10 +31,6 @@ const Matches = ({ type, filter = false, data, statusMatches, getMatches }) => {
     setState(1);
   }, [location]);
 
-  // useEffect(() => {
-  //   return deleteMatches();
-  // }, []);
-
   return statusMatches === 200 ? (
     <div className="matches">
       {/* <Button type={'<'} state={state} setState={setState} data={data} />
