@@ -41,16 +41,60 @@ h2 {
 h1 {
   color: #364f6b;
   font-size: 30px;
+
+  @media screen and (max-width: 1599px) {
+    font-size: 25px;
+  }
+
+  @media screen and (max-width: 1439px) {
+    font-size: 20px;
+  }
 }
 
 h2,
 h4,
 h5 {
   font-size: 20px;
+
+  @media screen and (max-width: 1599px) {
+    font-size: 17px;
+  }
+
+  @media screen and (max-width: 1279px) {
+    font-size: 15px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 14px;
+  }
 }
 
 h3 {
   font-size: 30px;
+
+  @media screen and (max-width: 1919px) {
+    font-size: 26px;
+  }
+
+  @media screen and (max-width: 1599px) {
+    font-size: 23px;
+  }
+
+  @media screen and (max-width: 1279px) {
+    font-size: 20px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    font-size: 25px;
+  }
+
+  @media screen and (max-width: 767px) {
+    font-size: 17px;
+  }
 }
 
 a {
@@ -60,7 +104,15 @@ a {
 button {
   color: #364f6b;
   font-size: 30px;
-  font-size: 19px;
+
+  @media screen and (max-width: 1023px) {
+    font-size: 19px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    font-size: 14px;
+  }
+
   background: none;
   border: 0;
   width: auto;

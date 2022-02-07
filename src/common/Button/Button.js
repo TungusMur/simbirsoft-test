@@ -58,6 +58,10 @@ const Button = ({ type, state, setState, data = {}, difference = 0, value, navig
           onClick={() => {
             if (document.location.href.match(/\d+-\d+-\d+/g)) {
               navigation(`/${document.location.pathname.match(/\w+\/id=\d+/)[0]}`);
+              window.scrollTo(0, 0);
+            } else if (document.location.pathname.match(/\/\w+\/search=\w+/)) {
+              navigation(`/${document.location.pathname.match(/\w+/)[0]}`);
+              window.scrollTo(0, 0);
             }
           }}
         >

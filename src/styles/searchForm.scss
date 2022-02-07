@@ -2,6 +2,24 @@
   margin: 0px 15px;
   position: relative;
   width: 28%;
+
+  @media screen and (max-width: 1439px) {
+    width: 36%;
+  }
+
+  @media screen and (max-width: 1279px) {
+    width: 39%;
+  }
+
+  @media screen and (max-width: 1023px) {
+    margin: 0px;
+    position: fixed;
+    display: flex;
+    width: 80%;
+    z-index: 1;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 .searchForm {
@@ -14,10 +32,35 @@
   background: #ffffff;
   border-radius: 8px;
   justify-content: center;
+
+  @media screen and (max-width: 1919px) {
+    width: 430px;
+  }
+
+  @media screen and (max-width: 1599px) {
+    width: 400px;
+  }
+
+  @media screen and (max-width: 1439px) {
+    width: 380px;
+  }
+
+  @media screen and (max-width: 1279px) {
+    width: 330px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    position: static;
+    width: 455px;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 255px;
+  }
 }
 
 .searchFormActions {
-  margin: 50px 0px;
+  margin: 44px 0px;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -31,6 +74,50 @@
     &:hover {
       outline: #364f6b 1px solid;
     }
+
+    @media screen and (max-width: 1919px) {
+      width: 60%;
+    }
+
+    @media screen and (max-width: 1279px) {
+      font-size: 15px;
+      width: 50%;
+    }
+
+    @media screen and (max-width: 1023px) {
+      font-size: 20px;
+      width: 65%;
+    }
+
+    @media screen and (max-width: 767px) {
+      font-size: 14px;
+      width: 48%;
+    }
+  }
+
+  @media screen and (max-width: 1919px) {
+    margin: 35px 0px;
+  }
+
+  @media screen and (max-width: 1599px) {
+    margin: 25px 0px;
+  }
+
+  @media screen and (max-width: 1279px) {
+    margin: 20px 0px;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin: 12px 0px;
   }
 }
 
+.searchFormButton {
+  @media screen and (max-width: 1279px) {
+    width: 20%;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 22%;
+  }
+}

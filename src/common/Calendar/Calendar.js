@@ -17,6 +17,7 @@ const Calendar = () => {
   useEffect(() => {
     setDateFrom(document.location.href.match(/\d+-\d+-\d+/g) ? document.location.href.match(/\d+-\d+-\d+/g)[0] : '');
     setDateTo(document.location.href.match(/\d+-\d+-\d+/g) ? document.location.href.match(/\d+-\d+-\d+/g)[1] : '');
+    console.log(location);
   }, [location]);
 
   return (
@@ -50,7 +51,9 @@ const Calendar = () => {
       <div className="calendarButton">
         <button
           onClick={() => {
-            navigation(`dateFrom=${dateFrom}&dateTo=${dateTo}`);
+            if (dateFrom <= dateTo && dateFrom !== '' && dateTo !== '') {
+              navigation(`dateFrom=${dateFrom}&dateTo=${dateTo}`);
+            }
           }}
         >
           Найти

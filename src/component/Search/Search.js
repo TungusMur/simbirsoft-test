@@ -17,7 +17,8 @@ const Search = ({ type, data }) => {
   useEffect(() => {
     setRegex(new RegExp(JSON.stringify(params) !== '{}' ? params.search.toLowerCase() : ''));
     setState(1);
-  }, [location]);
+    console.log('=');
+  }, [params]);
 
   return (
     <div id="searchData" className="searchData">

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, Outlet, useParams } from 'react-router';
 import Button from '../../common/Button';
 import './Competitions.scss';
@@ -8,6 +8,11 @@ const Competitions = () => {
   const params = useParams();
   const [value, setValue] = useState(JSON.stringify(params) !== '{}' ? params.search : '');
   const navigation = useNavigate();
+
+  useEffect(() => {
+    setValue(JSON.stringify(params) !== '{}' ? params.search : '');
+  }, [params]);
+
   return (
     <div className="competitions">
       <div className="search">

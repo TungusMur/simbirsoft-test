@@ -25,7 +25,7 @@ const Competition = ({ dataId, statusId, getDataId, deleteMatches }) => {
         <div className="competitionInfo">
           {statusId === 200 ? (
             <div className="competitionInfoForm">
-              {dataId.crestUrl ? (
+              {dataId.emblemUrl ? (
                 <div className="emblemUrl">
                   <img alt="emblemUrl" src={dataId.emblemUrl} />
                 </div>

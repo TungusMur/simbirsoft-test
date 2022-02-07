@@ -9,4 +9,40 @@
   background: #ffffff;
   border-radius: 8px;
   justify-content: center;
+
+  &:hover {
+    box-shadow: 0 16px 40px rgba(69 90 157 / 30%);
+
+    @media screen and (max-width: 1439px) {
+      box-shadow: 0 11px 20px rgba(69 90 157 / 30%);
+    }
+  }
+
+  @media screen and (max-width: 1919px) {
+    width: 430px;
+  }
+
+  @media screen and (max-width: 1599px) {
+    width: 400px;
+    padding: 12px 0px;
+  }
+
+  @media screen and (max-width: 1439px) {
+    width: 380px;
+  }
+
+  @media screen and (max-width: 1279px) {
+    width: 330px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    position: static;
+    display: flex;
+    width: 140px;
+    align-items: center;
+  }
+
+  @media screen and (max-width: 1279px) {
+    width: 112px;
+  }
 }

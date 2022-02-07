@@ -1,3 +1,28 @@
 .searchData {
   width: 67%;
+
+  @media screen and (max-width: 1919px) {
+    width: 63%;
+  }
+
+  @media screen and (max-width: 1559px) {
+    width: 62%;
+  }
+
+  @media screen and (max-width: 1559px) {
+    width: 60%;
+  }
+
+  @media screen and (max-width: 1279px) {
+    width: 56%;
+  }
+
+  @media screen and (max-width: 1023px) {
+    margin: 90px 0px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 1023px) {
+    margin: 65px 0px;
+  }
 }

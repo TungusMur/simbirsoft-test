@@ -4,21 +4,54 @@
   border-radius: 10px;
   box-shadow: 0 4px 4px rgb(69 90 157 / 12%);
   margin-bottom: 24px;
-  padding: 20px 32px;
+
   &:hover {
     box-shadow: 0 16px 40px rgba(69 90 157 / 30%);
+
+    @media screen and (max-width: 1439px) {
+      box-shadow: 0 11px 20px rgba(69 90 157 / 30%);
+    }
   }
-  // &:hover .imgFirst {
-  //   transform: rotateY(360deg);
-  // }
-  // &:hover .imgSecond {
-  //   transform: rotateY(180deg);
-  // }
+
+  @media screen and (max-width: 1599px) {
+    margin-bottom: 20px;
+  }
+
+  @media screen and (max-width: 1439px) {
+    margin-bottom: 15px;
+  }
+}
+
+.dataListItemLink {
+  padding: 20px 32px;
+  display: flex;
+  justify-content: flex-start;
+
+  @media screen and (max-width: 1919px) {
+    padding: 15px 32px;
+  }
+
+  @media screen and (max-width: 1599px) {
+    padding: 10px 22px;
+  }
+
+  @media screen and (max-width: 1279px) {
+    padding: 7px 22px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    padding: 15px 22px;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 6px 12px;
+  }
 }
 
 .dataListInfo {
+  padding: 20px 32px;
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
 }
 
 .dataListItemText {
@@ -28,11 +61,35 @@
 
 .dataListItemName {
   margin: 7px 0px;
+
+  @media screen and (max-width: 1919px) {
+    margin: 6px 0px;
+  }
+
+  @media screen and (max-width: 1599px) {
+    margin: 5px 0px;
+  }
+
+  @media screen and (max-width: 1279px) {
+    margin: 4px 0px;
+  }
 }
 
 .dataListItemDetails {
   display: flex;
   margin: 7px 0px;
+
+  @media screen and (max-width: 1919px) {
+    margin: 6px 0px;
+  }
+
+  @media screen and (max-width: 1599px) {
+    margin: 5px 0px;
+  }
+
+  @media screen and (max-width: 1279px) {
+    margin: 4px 0px;
+  }
 }
 
 .dataListItemCurrentSeason {
@@ -45,21 +102,27 @@
 }
 
 .dataListItemEmblem {
-  // height: 100px;
-  // width: 200px;
-  // perspective: 1000px;
-  // position: relative;
   display: flex;
   justify-content: center;
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
+  align-items: center;
   img {
     background: #ffffff;
     margin-right: 32px;
-    // position: absolute;
-    height: 85px;
+    height: 78px;
     backface-visibility: hidden;
+
+    @media screen and (max-width: 1919px) {
+      height: 70.89px;
+    }
+
+    @media screen and (max-width: 1559px) {
+      height: 60px;
+    }
+
+    @media screen and (max-width: 767px) {
+      margin-right: 15px;
+      height: 40px;
+    }
   }
 }
 

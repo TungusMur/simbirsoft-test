@@ -3,4 +3,16 @@
   justify-content: center;
   position: relative;
   top: 100px;
+
+  @media screen and (max-width: 1599px) {
+    top: 80px;
+  }
+
+  @media screen and (max-width: 1439px) {
+    top: 70px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    top: 60px;
+  }
 }

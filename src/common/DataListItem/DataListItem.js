@@ -79,33 +79,35 @@ const DataListItem = ({ type, index, item }) => {
     case 'teams':
       return (
         <li key={index} className="dataListItem">
-          {item.competition ? (
-            <div className="competitionName">
-              <h3>{item.competition.name}</h3>
-            </div>
-          ) : null}
-          <div className="teamsBattle">
-            <div className="awayTeam">
-              <h4>Away team</h4>
-              <h2>{item.awayTeam.name}</h2>
-            </div>
-            <h2>vs</h2>
-            <div className="homeTeam">
-              <h4>Home team</h4>
-              <h2>{item.homeTeam.name}</h2>
-            </div>
-          </div>
-          <div className="timeAndAreaEvent">
-            <div className="time">
-              <div className="utcDate">
-                <h2>{item.utcDate.replace(/-/g, '.').match(/\d\d\d\d.\d\d.\d\d/)}</h2>
-              </div>
-            </div>
+          <div className="dataListInfo">
             {item.competition ? (
-              <div className="area">
-                <h2>{type === 'teams' ? item.competition.area.name : null}</h2>
+              <div className="competitionName">
+                <h3>{item.competition.name}</h3>
               </div>
             ) : null}
+            <div className="teamsBattle">
+              <div className="awayTeam">
+                <h4>Away team</h4>
+                <h2>{item.awayTeam.name}</h2>
+              </div>
+              <h2>vs</h2>
+              <div className="homeTeam">
+                <h4>Home team</h4>
+                <h2>{item.homeTeam.name}</h2>
+              </div>
+            </div>
+            <div className="timeAndAreaEvent">
+              <div className="time">
+                <div className="utcDate">
+                  <h2>{item.utcDate.replace(/-/g, '.').match(/\d\d\d\d.\d\d.\d\d/)}</h2>
+                </div>
+              </div>
+              {item.competition ? (
+                <div className="area">
+                  <h2>{type === 'teams' ? item.competition.area.name : null}</h2>
+                </div>
+              ) : null}
+            </div>
           </div>
         </li>
       );
@@ -113,7 +115,12 @@ const DataListItem = ({ type, index, item }) => {
     case 'search':
       return (
         <li key={index} className="dataListItem">
-          <div className="dataListInfo">
+          <NavLink
+            className="dataListItemLink"
+            id={`dataListItem${index}`}
+            to={`/${document.location.pathname.match(/\w+/)[0]}/id=${item.id}`}
+          >
+            {/* <div className="dataListInfo"> */}
             <div id="dataListItemEmblem" className="dataListItemEmblem">
               {item.emblemUrl ? (
                 <>
@@ -146,12 +153,13 @@ const DataListItem = ({ type, index, item }) => {
                 </div>
               </div>
             </div>
-          </div>
-          <NavLink
+            {/* </div> */}
+          </NavLink>
+          {/* <NavLink
             className="dataListHover"
             id={`dataListItem${index}`}
             to={`/${document.location.pathname.match(/\w+/)[0]}/id=${item.id}`}
-          ></NavLink>
+          ></NavLink> */}
         </li>
       );
     default:

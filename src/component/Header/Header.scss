@@ -1,5 +1,68 @@
-.header {
+.burger {
+  background: #ffffff;
+  height: 60px;
+  display: none;
+  width: 100%;
+  box-shadow: 0 4px 4px rgb(69 90 157 / 19%);
+  position: fixed;
+  justify-content: center;
   z-index: 1;
+
+  @media screen and (max-width: 1023px) {
+    display: flex;
+  }
+}
+
+.burgerForm {
+  width: 90%;
+}
+
+.burgerButton {
+  padding: 0;
+  width: 45px;
+  height: 100%;
+  span,
+  &::before,
+  &::after {
+    width: 100%;
+    display: block;
+    transition: 0.6s;
+    border-radius: 10px;
+    height: 4px;
+    background: #364f6b;
+    position: relative;
+  }
+
+  &::before {
+    content: '';
+    top: -12px;
+  }
+
+  &::after {
+    content: '';
+    top: 12px;
+  }
+
+  &.active {
+    span {
+      transform: scale(0);
+    }
+
+    &::before {
+      top: 2px;
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      top: -5px;
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.header {
+  overflow: hidden;
+  z-index: 2;
   position: fixed;
   box-shadow: 0 4px 4px rgb(69 90 157 / 19%);
   height: 80px;
@@ -7,6 +70,30 @@
   display: flex;
   justify-content: center;
   background-color: #ffffff;
+
+  @media screen and (max-width: 1439px) {
+    height: 70px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    top: 60px;
+    position: fixed;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    background: none;
+    box-shadow: 0px 0px 0px 0px #ffffff00;
+    right: 100%;
+    transition: 1s;
+
+    &.active {
+      right: 0px;
+      .nav {
+        transition: 2s;
+        box-shadow: 20px 0px 20px 0px #00000080;
+      }
+    }
+  }
 }
 
 .nav {
@@ -15,10 +102,49 @@
   width: 80%;
   align-items: center;
   justify-content: space-between;
+
+  @media screen and (max-width: 1599px) {
+    width: 73%;
+  }
+
+  @media screen and (max-width: 1023px) {
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+    height: inherit;
+    justify-content: flex-start;
+    background: #ffffff;
+    position: relative;
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 60%;
+  }
+}
+
+.logo {
+  @media screen and (max-width: 1023px) {
+    padding: 20px 146px;
+    margin: 20px 0px;
+  }
 }
 
 .navBar {
   width: 60%;
   display: flex;
   justify-content: space-around;
+
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+}
+
+.navBarItem {
+  @media screen and (max-width: 1023px) {
+    padding: 20px 59px;
+    margin-bottom: 30px;
+  }
 }

@@ -5,7 +5,6 @@ import Header from '../Header';
 import './App.scss';
 
 const App = () => {
-  console.log(process.env.REACT_APP_AUTH_TOKEN);
   return (
     <div className="app">
       <Router>
