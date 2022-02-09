@@ -1,24 +1,13 @@
 /* eslint-disable no-unused-vars */
 import { useLocation } from 'react-router';
 import { useEffect, useState } from 'react';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Calendar.scss';
 
-const Calendar = () => {
-  const location = useLocation();
-  const [dateFrom, setDateFrom] = useState(
-    document.location.href.match(/\d+-\d+-\d+/g) ? document.location.href.match(/\d+-\d+-\d+/g)[0] : ''
-  );
-  const [dateTo, setDateTo] = useState(
-    document.location.href.match(/\d+-\d+-\d+/g) ? document.location.href.match(/\d+-\d+-\d+/g)[1] : ''
-  );
+const Calendar = ({ dateFrom, dateTo }) => {
+  const [stateDateFrom, setStateDateFrom] = useState(dateFrom);
+  const [stateDateTo, setStateDateTo] = useState(dateTo);
   const navigation = useNavigate();
-
-  useEffect(() => {
-    setDateFrom(document.location.href.match(/\d+-\d+-\d+/g) ? document.location.href.match(/\d+-\d+-\d+/g)[0] : '');
-    setDateTo(document.location.href.match(/\d+-\d+-\d+/g) ? document.location.href.match(/\d+-\d+-\d+/g)[1] : '');
-    console.log(location);
-  }, [location]);
 
   return (
     <div className="calendar">
@@ -30,9 +19,9 @@ const Calendar = () => {
             <input
               type="date"
               onChange={(e) => {
-                setDateFrom(e.target.value);
+                setStateDateFrom(e.target.value);
               }}
-              value={dateFrom}
+              value={stateDateFrom}
             />
           </div>
 
@@ -41,9 +30,9 @@ const Calendar = () => {
             <input
               type="date"
               onChange={(e) => {
-                setDateTo(e.target.value);
+                setStateDateTo(e.target.value);
               }}
-              value={dateTo}
+              value={stateDateTo}
             />
           </div>
         </div>
@@ -51,8 +40,8 @@ const Calendar = () => {
       <div className="calendarButton">
         <button
           onClick={() => {
-            if (dateFrom <= dateTo && dateFrom !== '' && dateTo !== '') {
-              navigation(`dateFrom=${dateFrom}&dateTo=${dateTo}`);
+            if (stateDateFrom <= stateDateTo && stateDateFrom !== '' && stateDateTo !== '') {
+              navigation(`dateFrom=${stateDateFrom}&dateTo=${stateDateTo}`);
             }
           }}
         >

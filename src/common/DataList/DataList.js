@@ -5,7 +5,7 @@ import DataListItem from '../DataListItem/DataListItem';
 import './DataList.scss';
 import '../DataListItem/DataListItem.scss';
 
-const DataList = ({ type, dataCheck, dataList, state, regex }) => {
+const DataList = ({ type, dataCheck, dataList, value }) => {
   switch (type) {
     case 'competitions':
     case 'teams':
@@ -13,9 +13,7 @@ const DataList = ({ type, dataCheck, dataList, state, regex }) => {
         <div className="dataList">
           <ul>
             {JSON.stringify(dataCheck) !== '{}'
-              ? dataList
-                  // .filter((item, index) => state * 20 > index + 1 && state * 20 - 20 < index + 1)
-                  .map((item, index) => <DataListItem key={index} index={index} type={type} item={item} />)
+              ? dataList.map((item, index) => <DataListItem key={index} index={index} type={type} item={item} />)
               : null}
           </ul>
         </div>
@@ -26,8 +24,7 @@ const DataList = ({ type, dataCheck, dataList, state, regex }) => {
           <ul>
             {JSON.stringify(dataCheck) !== '{}'
               ? dataList
-                  .filter((item) => regex.test(item.name.toLowerCase()))
-                  // .filter((item, index) => state * 20 > index + 1 && state * 20 - 20 < index + 1)
+                  .filter((item) => new RegExp(value).test(item.name.toLowerCase()))
                   .map((item, index) => <DataListItem key={index} index={index} type={type} item={item} />)
               : null}
           </ul>

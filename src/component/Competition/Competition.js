@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Outlet, useParams, useNavigate } from 'react-router';
@@ -35,7 +34,7 @@ const Competition = ({ dataId, statusId, getDataId, deleteMatches }) => {
                   <h5>{dataId.name}</h5>
                 </div>
                 <div className="competitionArea">
-                  <h5>{dataId.area.name}</h5>
+                  <h2>{dataId.area.name}</h2>
                 </div>
               </div>
             </div>
@@ -43,7 +42,10 @@ const Competition = ({ dataId, statusId, getDataId, deleteMatches }) => {
         </div>
         <div className="competitionForm">
           <div className="competitionFormAction">
-            <Calendar />
+            <Calendar
+              dateFrom={JSON.stringify(params) !== '{}' && params.dateFrom ? params.dateFrom : ''}
+              dateTo={JSON.stringify(params) !== '{}' && params.dateTo ? params.dateTo : ''}
+            />
           </div>
         </div>
         <Button type="reset" navigation={navigation} />

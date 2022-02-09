@@ -26,12 +26,12 @@ const DataListItem = ({ type, index, item }) => {
             <div className="timeAndAreaEvent">
               <div className="time">
                 <div className="utcDate">
-                  <h2>{item.utcDate.replace(/-/g, '.').match(/\d\d\d\d.\d\d.\d\d/)}</h2>
+                  <h2>{item.utcDate.replace(/-/g, '.').match(/\d+.\d+.\d+/)}</h2>
                 </div>
               </div>
               {item.competition ? (
                 <div className="area">
-                  <h2>{type === 'teams' ? item.competition.area.name : null}</h2>
+                  <h2>{item.competition.area.name}</h2>
                 </div>
               ) : null}
             </div>

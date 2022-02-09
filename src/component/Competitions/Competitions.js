@@ -3,7 +3,6 @@ import { useNavigate, Outlet, useParams } from 'react-router';
 import Button from '../../common/Button';
 import './Competitions.scss';
 
-// eslint-disable-next-line no-shadow
 const Competitions = () => {
   const params = useParams();
   const [value, setValue] = useState(JSON.stringify(params) !== '{}' ? params.search : '');

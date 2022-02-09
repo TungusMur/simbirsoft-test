@@ -30,7 +30,7 @@ const Main = ({ getCompetitions, getTeams }) => {
 
         <Route exact path={'/competitions/id=:id'} element={<Competition />}>
           <Route index element={<Matches type="competitions" />} />
-          <Route exact path={'dateFrom=:date&dateTo=:date'} element={<Matches type="competitions" filter={true} />} />
+          <Route exact path={'dateFrom=:dateFrom&dateTo=:dateTo'} element={<Matches type="competitions" />} />
         </Route>
 
         <Route exact path={'/teams'} element={<Teams />}>
@@ -41,7 +41,7 @@ const Main = ({ getCompetitions, getTeams }) => {
 
         <Route exact path={'/teams/id=:id'} element={<Team />}>
           <Route index element={<Matches type="teams" />} />
-          <Route exact path={'dateFrom=:date&dateTo=:date'} element={<Matches type="teams" filter={true} />} />
+          <Route exact path={'dateFrom=:dateFrom&dateTo=:dateTo'} element={<Matches type="teams" />} />
         </Route>
       </Routes>
     </div>
