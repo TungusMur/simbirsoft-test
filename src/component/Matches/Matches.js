@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router';
+import { useEffect } from 'react';
+import { useParams } from 'react-router';
 import { connect } from 'react-redux';
 import { getMatches } from 'Store/reducers/reducerMathes';
 import DataList from 'common/DataList';
-import Button from 'common/Button';
 import './Matches.scss';
 
 // eslint-disable-next-line no-shadow

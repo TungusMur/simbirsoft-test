@@ -1,13 +1,19 @@
 /* eslint-disable no-unused-vars */
-import { useLocation } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Calendar.scss';
 
-const Calendar = ({ dateFrom, dateTo }) => {
-  const [stateDateFrom, setStateDateFrom] = useState(dateFrom);
-  const [stateDateTo, setStateDateTo] = useState(dateTo);
+const Calendar = () => {
+  const params = useParams();
+  const [stateDateFrom, setStateDateFrom] = useState(params.dateFrom ? params.dateFrom : '');
+  const [stateDateTo, setStateDateTo] = useState(params.dateTo ? params.dateTo : '');
   const navigation = useNavigate();
+
+  useEffect(() => {
+    setStateDateFrom(params.dateFrom ? params.dateFrom : '');
+    setStateDateTo(params.dateTo ? params.dateTo : '');
+  }, [params]);
 
   return (
     <div className="calendar">

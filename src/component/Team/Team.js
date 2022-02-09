@@ -38,10 +38,7 @@ const Team = ({ dataId, statusId, getDataId, deleteMatches }) => {
         </div>
         <div className="teamForm">
           <div className="teamFormAction">
-            <Calendar
-              dateFrom={JSON.stringify(params) !== '{}' && params.dateFrom ? params.dateFrom : ''}
-              dateTo={JSON.stringify(params) !== '{}' && params.dateTo ? params.dateTo : ''}
-            />
+            <Calendar />
           </div>
         </div>
         <Button type="reset" navigation={navigation} />
